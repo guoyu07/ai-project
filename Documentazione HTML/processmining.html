@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<title>Process Mining</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>Process Mining</h1>
+<a name="
+General"></a><h2>Informazioni generali:</h2>
+<p>Implementazione dell'algoritmo di Process Mining descritto nell'articolo &quot;Rediscovering Workflow Models from Event-Based Data&quot; 	</p><h3>Autore:</h3>
+<ul id="authors"><li><p>Nicola Sanitate 	</p></li></ul>
+<h3>Data:</h3>
+<p>19/10/2011 </p>
+<h3>Istruzioni:</h3>
+<ol>
+ <li>Assicurarsi di avere il file workflow.log da cui si vogliono ottenere le sequenze nella stessa cartella di questo programma</li>
+ <li>Consultare questo programma con un interprete Prolog</li>
+ <li>Interrogare il predicato start</li>
+</ol>
+<a name="
+Modules"></a><h2>Librerie usate:</h2>
+<ul id="modules"><li><p>lists</p></li></ul>
+<a name="
+Predicates"></a><h2>Predicati:</h2>
+<ul id="predicates_file">
+<li><p><a href="#analisi_successione-5-0">analisi_successione/5</a></p></li><li><p><a href="#applicazione_euristica-6-1">applicazione_euristica/6</a></p></li><li><p><a href="#asserzione_confini_posto-3-2">asserzione_confini_posto/3</a></p></li><li><p><a href="#asserzione_in-2-3">asserzione_in/2</a></p></li><li><p><a href="#asserzione_out-2-4">asserzione_out/2</a></p></li><li><p><a href="#asserzione_sb-1-5">asserzione_sb/1</a></p></li><li><p><a href="#asserzione_se-1-6">asserzione_se/1</a></p></li><li><p><a href="#asserzioni-2-7">asserzioni/2</a></p></li><li><p><a href="#collocazione-4-8">collocazione/4</a></p></li><li><p><a href="#costruzione_dftable-5-9">costruzione_dftable/5</a></p></li><li><p><a href="#divisioni-3-10">divisioni/3</a></p></li><li><p><a href="#euristica1-8-11">euristica1/8</a></p></li><li><p><a href="#euristica2-7-12">euristica2/7</a></p></li><li><p><a href="#euristica3-11-13">euristica3/11</a></p></li><li><p><a href="#frequenza-3-14">frequenza/3</a></p></li><li><p><a href="#frequenza_sequenza-3-15">frequenza_sequenza/3</a></p></li><li><p><a href="#generazione_wfnet-3-16">generazione_wfnet/3</a></p></li><li><p><a href="#induzione_dfgraph-4-17">induzione_dfgraph/4</a></p></li><li><p><a href="#induzione_transizione-6-18">induzione_transizione/6</a></p></li><li><p><a href="#insiemi-3-19">insiemi/3</a></p></li><li><p><a href="#inversione-2-20">inversione/2</a></p></li><li><p><a href="#lettura-2-21">lettura/2</a></p></li><li><p><a href="#lettura_sequenza-3-22">lettura_sequenza/3</a></p></li><li><p><a href="#lettura_transizione-3-23">lettura_transizione/3</a></p></li><li><p><a href="#lettura_transizione-4-24">lettura_transizione/4</a></p></li><li><p><a href="#ricerca_successione_diretta-3-25">ricerca_successione_diretta/3</a></p></li><li><p><a href="#scrittura-0-26">scrittura/0</a></p></li><li><p><a href="#sottoinsieme_transizione-3-27">sottoinsieme_transizione/3</a></p></li><li><p><a href="#sottotabella-7-28">sottotabella/7</a></p></li><li><p><a href="#stampa_insieme-2-29">stampa_insieme/2</a></p></li><li><p><a href="#stampa_sottoinsieme-2-30">stampa_sottoinsieme/2</a></p></li><li><p><a href="#start-0-31">start/0</a></p></li><li><p><a href="#successione-5-32">successione/5</a></p></li><li><p><a href="#successione_diretta-4-33">successione_diretta/4</a></p></li><li><p><a href="#successione_diretta_sequenza-4-34">successione_diretta_sequenza/4</a></p></li><li><p><a href="#successione_sequenza-5-35">successione_sequenza/5</a></p></li><li><p><a href="#unioni-3-36">unioni/3</a></p></li><li><p><a href="#valutazione-3-37">valutazione/3</a></p></li><li><p><a href="#valutazione_divisione-4-38">valutazione_divisione/4</a></p></li></ul>
+<a name="
+Details"></a><h2>Predicati in dettaglio:</h2>
+<ul id="details">
+<li><h3><a name="analisi_successione-5-0"></a>analisi_successione/5</h3>
+<h4>Forma: </h4>
+
+<p>analisi_successione(+TransizioneEsaminata,+Transizione,+Sequenza,-Successione,-TransizioniIntermedie) </p>
+<h4>Descrizione: </h4>
+
+<p>Analisi della successione:<br/> calcola la distanza di una successione;<br/> se la sequenza &egrave; invertita calcola la distanza di una precedenza 	</p></li><li><h3><a name="applicazione_euristica-6-1"></a>applicazione_euristica/6</h3>
+<h4>Forma: </h4>
+
+<p>applicazione_euristica(+Transizione,+Frequenza,+Riga,+FattoreRumore,+Soglia,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Applicazione dell'euristica:<br/> applica l'euristica pi&ugrave; opportuna 	</p></li><li><h3><a name="asserzione_confini_posto-3-2"></a>asserzione_confini_posto/3</h3>
+<h4>Forma: </h4>
+
+<p>asserzione_confini_posto(+Transizione,+TransizioniDestinazione,+Posto) </p>
+<h4>Descrizione: </h4>
+
+<p>Asserzione dei confini di un posto:<br/> ottiene tutte le transizioni connesse ad un posto e asserisce tali connessioni 	</p></li><li><h3><a name="asserzione_in-2-3"></a>asserzione_in/2</h3>
+<h4>Forma: </h4>
+
+<p>asserzione_in(+TransizioniDestinazione,+Posto) </p>
+<h4>Descrizione: </h4>
+
+<p>Asserzione di archi da un posto ad un insieme di transizioni:<br/> asserisce tutti gli archi in entrata da uno specifico posto 	</p></li><li><h3><a name="asserzione_out-2-4"></a>asserzione_out/2</h3>
+<h4>Forma: </h4>
+
+<p>asserzione_out(+TransizioniPartenza,+Posto) </p>
+<h4>Descrizione: </h4>
+
+<p>Asserzione di archi da un insieme di transizioni ad un posto:<br/> asserisce tutti gli archi in uscita verso uno specifico posto 	</p></li><li><h3><a name="asserzione_sb-1-5"></a>asserzione_sb/1</h3>
+<h4>Forma: </h4>
+
+<p>asserzione_sb(+TransizioniIniziali) </p>
+<h4>Descrizione: </h4>
+
+<p>Asserzione degli archi iniziali:<br/> asserisce tutti gli archi iniziali della WF-Net 	</p></li><li><h3><a name="asserzione_se-1-6"></a>asserzione_se/1</h3>
+<h4>Forma: </h4>
+
+<p>asserzione_se(+TransizioniFinali) </p>
+<h4>Descrizione: </h4>
+
+<p>Asserzione degli archi finali:<br/> asserisce tutti gli archi finali della WF-Net 	</p></li><li><h3><a name="asserzioni-2-7"></a>asserzioni/2</h3>
+<h4>Forma: </h4>
+
+<p>asserzioni(+TransizioniDistinte,+NumeroPosto) </p>
+<h4>Descrizione: </h4>
+
+<p>Asserzioni degli archi:<br/> asserisce tutti gli archi della WF-Net creando incrementalmente i posti necessari 	</p></li><li><h3><a name="collocazione-4-8"></a>collocazione/4</h3>
+<h4>Forma: </h4>
+
+<p>collocazione(+Transizione,+Soglia,+Insiemi,-NuoviInsiemi) </p>
+<h4>Descrizione: </h4>
+
+<p>Collocazione di una transizioni nell'insieme pi&ugrave; opportuno:<br/> colloca una transizione nel giusto insieme 	</p></li><li><h3><a name="costruzione_dftable-5-9"></a>costruzione_dftable/5</h3>
+<h4>Forma: </h4>
+
+<p>costruzione_dftable(+Transizioni,+Transizioni,+Sequenze,+SequenzeInvertite,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Costruzione della D/F-table:<br/> costruisce la D/F-Table partendo dalle sequenze di transizioni trovate nel file di log 	</p></li><li><h3><a name="divisioni-3-10"></a>divisioni/3</h3>
+<h4>Forma: </h4>
+
+<p>divisioni(+Transizioni,+Soglia,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Classificazione delle divisioni (split):<br/> trova, valuta e stampa su file processmining.log tutte le divisioni del grafo 	</p></li><li><h3><a name="euristica1-8-11"></a>euristica1/8</h3>
+<h4>Forma: </h4>
+
+<p>euristica1(+TransizionePartenza,+TransizioneDestinazione,+PrecedenzaDiretta,+SuccessioneDiretta,+Causalita,+FattoreRumore,+Soglia,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Euristica 1:<br/> implementazione della prima euristica;<br/> l'arco trovato verr&agrave; stampato su file processmining.log 	</p></li><li><h3><a name="euristica2-7-12"></a>euristica2/7</h3>
+<h4>Forma: </h4>
+
+<p>euristica2(+Transizione,+Frequenza,+PrecedenzaDiretta,+SuccessioneDiretta,+Causalita,+FattoreRumore,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Euristica 2:<br/> implementazione della seconda euristica;<br/> l'arco trovato verr&agrave; stampato su file processmining.log 	</p></li><li><h3><a name="euristica3-11-13"></a>euristica3/11</h3>
+<h4>Forma: </h4>
+
+<p>euristica3(+TransizionePartenza,+TransizioneDestinazione,+Frequenza,+PrecedenzaDiretta,+SuccessioneDiretta,+Precedenza,+Successione,+Causalita,+FattoreRumore,+Soglia,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Euristica 3:<br/> implementazione della terza euristica;<br/> l'arco trovato verr&agrave; stampato su file processmining.log 	</p></li><li><h3><a name="frequenza-3-14"></a>frequenza/3</h3>
+<h4>Forma: </h4>
+
+<p>frequenza(+Transizione,+Sequenze,-Frequenza) </p>
+<h4>Descrizione: </h4>
+
+<p>Calcolo della frequenza nella lista di sequenze:<br/> calcola la frequenza di una transizione nelle sequenze 	</p></li><li><h3><a name="frequenza_sequenza-3-15"></a>frequenza_sequenza/3</h3>
+<h4>Forma: </h4>
+
+<p>frequenza_sequenza(+Transizione,+Sequenza,-Frequenza) </p>
+<h4>Descrizione: </h4>
+
+<p>Calcolo della frequenza all'interno di una sequenza:<br/> calcola la frequenza di una transizione all'interno di una sequenza 	</p></li><li><h3><a name="generazione_wfnet-3-16"></a>generazione_wfnet/3</h3>
+<h4>Forma: </h4>
+
+<p>generazione_wfnet(+TransizioniDistinte,+Soglia,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Generazione della WF-net:<br/> costruisce la WF_Net partendo dal D/F-Graph ottenuto precedentemente 	</p></li><li><h3><a name="induzione_dfgraph-4-17"></a>induzione_dfgraph/4</h3>
+<h4>Forma: </h4>
+
+<p>induzione_dfgraph(+Transizioni,+FattoreRumore,+Soglia,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Induzione del D/F-graph:<br/> costruisce la D/F-Graph partendo dalle D/F-Table ottenute precedentemente 	</p></li><li><h3><a name="induzione_transizione-6-18"></a>induzione_transizione/6</h3>
+<h4>Forma: </h4>
+
+<p>induzione_transizione(+Transizione,+Frequenza,+Sottotabella,+FattoreRumore,+Soglia,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Induzione della parte del grafo inerente ad una transizione:<br/> costruisce la porzione di D/F-Graph inerente ad una transizione 	</p></li><li><h3><a name="insiemi-3-19"></a>insiemi/3</h3>
+<h4>Forma: </h4>
+
+<p>insiemi(+Transizioni,+Soglia,-Insiemi) </p>
+<h4>Descrizione: </h4>
+
+<p>Costruzione degli insiemi:<br/> crea gli insiemi utili a definire la tipologia di una divisione o di una unione 	</p></li><li><h3><a name="inversione-2-20"></a>inversione/2</h3>
+<h4>Forma: </h4>
+
+<p>inversione(+Sequenze,-SequenzeInvertite) </p>
+<h4>Descrizione: </h4>
+
+<p>Inversione delle sequenze:<br/> inverte le sequenze di transizioni 	</p></li><li><h3><a name="lettura-2-21"></a>lettura/2</h3>
+<h4>Forma: </h4>
+
+<p>lettura(+InputStream,-Sequenze) </p>
+<h4>Descrizione: </h4>
+
+<p>Lettura del file di input:<br/> legge il file di input per prelevare le sequenze di transizioni 	</p></li><li><h3><a name="lettura_sequenza-3-22"></a>lettura_sequenza/3</h3>
+<h4>Forma: </h4>
+
+<p>lettura_sequenza(+InputStream,+FineRiga,-Transizioni) </p>
+<h4>Descrizione: </h4>
+
+<p>Lettura di una sequenza:<br/> legge il file di input per prelevare le transizioni di una sequenza 	</p></li><li><h3><a name="lettura_transizione-3-23"></a>lettura_transizione/3</h3>
+<h4>Forma: </h4>
+
+<p>lettura_transizione(+InputStream,-FineRiga,-ListaCaratteri) </p>
+<h4>Descrizione: </h4>
+
+<p>Lettura di una transizione:<br/> legge il file di input per prelevare i caratteri di una transizione 	</p></li><li><h3><a name="lettura_transizione-4-24"></a>lettura_transizione/4</h3>
+<h4>Forma: </h4>
+
+<p>lettura_transizione(+InputStream,+Carattere,-FineRiga,-Transizioni) </p>
+<h4>Descrizione: </h4>
+
+<p>Lettura di una transizione:<br/> legge il file di input per prelevare i caratteri di una transizione 	</p></li><li><h3><a name="ricerca_successione_diretta-3-25"></a>ricerca_successione_diretta/3</h3>
+<h4>Forma: </h4>
+
+<p>cerca_successione_diretta(+Transizione,+Tabella,-SuccessioneDiretta) </p>
+<h4>Descrizione: </h4>
+
+<p>Ricerca della successione diretta relativa ad un transizione in una sottotabella:<br/> ricerca la successione diretta inerente ad una specifica transizione in una specifica sottotabella della D/F-Table 	</p></li><li><h3><a name="scrittura-0-26"></a>scrittura/0</h3>
+<h4>Forma: </h4>
+
+<p>scrittura </p>
+<h4>Descrizione: </h4>
+
+<p>Scrittura della WF-net nel file di output:<br/> riporta la wf-net generata sul file di output 	</p></li><li><h3><a name="sottoinsieme_transizione-3-27"></a>sottoinsieme_transizione/3</h3>
+<h4>Forma: </h4>
+
+<p>sottoinsieme_transizione(+Transizione,+Insieme,-Sottoinsieme) </p>
+<h4>Descrizione: </h4>
+
+<p>Ricerca del sottoinsieme in cui compare una transizione:<br/> cerca il sottoinsieme di un insieme in cui compare una transizione 	</p></li><li><h3><a name="sottotabella-7-28"></a>sottotabella/7</h3>
+<h4>Forma: </h4>
+
+<p>sottotabella(+TransizioneEsaminata,+Transizioni,+Sequenze,+SequenzeInvertite,+Frequenza,-Sottotabella,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Costruzione della sottotabella:<br/> calcola la riga della tabella per ogni transizione 	</p></li><li><h3><a name="stampa_insieme-2-29"></a>stampa_insieme/2</h3>
+<h4>Forma: </h4>
+
+<p>stampa_insieme(+Insieme,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Stampa di un insieme:<br/> stampa un insieme in forma preposizionale su file processmining.log 	</p></li><li><h3><a name="stampa_sottoinsieme-2-30"></a>stampa_sottoinsieme/2</h3>
+<h4>Forma: </h4>
+
+<p>stampa_sottoinsieme(+Sottoinsieme,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Stampa di un sottoinsieme:<br/> stampa un sottoinsieme in forma preposizionale su file processmining.log 	</p></li><li><h3><a name="start-0-31"></a>start/0</h3>
+<h4>Forma: </h4>
+
+<p>start </p>
+<h4>Descrizione: </h4>
+
+<p>Start:<br/> 	 ricava il modello di workflow partendo da un log di workflow tramite i seguenti passi:	 <ol>	  <li>lettura del log di workflow da file workflow.log</li>	  <li>costruzione della D/F-Table</li>	  <li>induzione del D/F-Graph</li>	  <li>generazione della WF-Net</li>	  <li>stampa della rete trovata su file wf-net-out e del log del processo su file processmining.log</li>	  </ol>	  </p></li><li><h3><a name="successione-5-32"></a>successione/5</h3>
+<h4>Forma: </h4>
+
+<p>successione(+TransizioneEsaminata,+Transizione,+Sequenze,-Successione,-IncrementoCausalita) </p>
+<h4>Descrizione: </h4>
+
+<p>Calcolo della successione nella lista di sequenze:<br/> calcola la successione di una transizione rispetto ad un altra;<br/> se usata con le sequenze invertite calcola la precedenza 	</p></li><li><h3><a name="successione_diretta-4-33"></a>successione_diretta/4</h3>
+<h4>Forma: </h4>
+
+<p>successione_diretta(+TransizioneEsaminata,+Transizione,+Sequenze,-SuccessioneDiretta) </p>
+<h4>Descrizione: </h4>
+
+<p>Calcolo della successione diretta nella lista di sequenze:<br/> calcola la successione diretta di una transizione rispetto ad un altra;<br/> se usata con le sequenze invertite calcola la precedenza diretta 	</p></li><li><h3><a name="successione_diretta_sequenza-4-34"></a>successione_diretta_sequenza/4</h3>
+<h4>Forma: </h4>
+
+<p>successione_diretta_sequenza(+TransizioneEsaminata,+Transizione,+Sequenza,-SuccessioneDiretta) </p>
+<h4>Descrizione: </h4>
+
+<p>Calcolo della successione diretta all'interno di una sequenza:<br/> calcola la successione diretta all'interno di una sequenza;<br/> se la sequenza &egrave; invertita calcola la precedenza diretta 	</p></li><li><h3><a name="successione_sequenza-5-35"></a>successione_sequenza/5</h3>
+<h4>Forma: </h4>
+
+<p>successione_sequenza(+TransizioneEsaminata,+Transizione,+Sequenza,-Successione,-IncrementoCausalita) </p>
+<h4>Descrizione: </h4>
+
+<p>Calcolo della successione all'interno di una sequenza:<br/> calcola la successione all'interno di una sequenza;<br/> se la sequenza &egrave; invertita calcola la precedenza 	</p></li><li><h3><a name="unioni-3-36"></a>unioni/3</h3>
+<h4>Forma: </h4>
+
+<p>divisioni(+Transizioni,+Soglia,+OutputStream) </p>
+<h4>Descrizione: </h4>
+
+<p>Classificazione delle unioni (join):<br/> trova, valuta e stampa su file processmining.log tutte le unioni del grafo 	</p></li><li><h3><a name="valutazione-3-37"></a>valutazione/3</h3>
+<h4>Forma: </h4>
+
+<p>valutazione(+Transizione,+Soglia,+Insieme) </p>
+<h4>Descrizione: </h4>
+
+<p>Valutazione dei requisiti di inserimento di una transizioni in un insieme:<br/> termina se una transizione pu&ograve; essere inserita in un insieme, altrimenti fallisce 	</p></li><li><h3><a name="valutazione_divisione-4-38"></a>valutazione_divisione/4</h3>
+<h4>Forma: </h4>
+
+<p>valutazione_divisione(+Transizione,+DivisioniTransizione,+NumeroPosto,+NuovoNumeroPosto) </p>
+<h4>Descrizione: </h4>
+
+<p>Valutazione di una divisione:<br/> valuta gli archi uscenti da una specifica transizione 	</p></li></ul>
+<p><a href="http://prologdoc.sourceforge.net"><img border="0" src="css/prologdoc.png" alt="Generated by PrologDoc" height="18" width="60"></a></p>
+
+
+</body>
+</html>

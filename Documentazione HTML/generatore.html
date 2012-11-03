@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<title>Generatore</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>Generatore</h1>
+<a name="
+General"></a><h2>Informazioni generali:</h2>
+<p>Generatore di sequenze di workflow comprendenti rumore a partire da un modello di workflow	</p><h3>Autore:</h3>
+<ul id="authors"><li><p>Nicola Sanitate 	</p></li></ul>
+<h3>Data:</h3>
+<p>18/10/2011 </p>
+<h3>Istruzioni:</h3>
+<ol>
+ <li>Assicurarsi di avere il file wf-net-in da cui si vogliono generare le sequenze nella stessa cartella di questo programma</li>
+ <li>Consultare questo programma con un interprete Prolog</li>
+ <li>Interrogare il predicato start(X) dove X &egrave; la percentuale di rumore da applicare alle sequenze</li>
+</ol>
+<a name="
+Modules"></a><h2>Librerie usate:</h2>
+<ul id="modules"><li><p>lists</p></li><li><p>random</p></li></ul>
+<a name="
+Predicates"></a><h2>Predicati:</h2>
+<ul id="predicates_file">
+<li><p><a href="#applicazione_rumore-2-0">applicazione_rumore/2</a></p></li><li><p><a href="#applicazione_rumore-3-1">applicazione_rumore/3</a></p></li><li><p><a href="#differenza_liste-3-2">differenza_liste/3</a></p></li><li><p><a href="#divisione_lista-5-3">divisione_lista/5</a></p></li><li><p><a href="#elemento_random-2-4">elemento_random/2</a></p></li><li><p><a href="#generazione-2-5">generazione/2</a></p></li><li><p><a href="#generazione_sequenza-4-6">generazione_sequenza/4</a></p></li><li><p><a href="#rimozione_coda-3-7">rimozione_coda/3</a></p></li><li><p><a href="#rimozione_corpo-3-8">rimozione_corpo/3</a></p></li><li><p><a href="#rimozione_testa-3-9">rimozione_testa/3</a></p></li><li><p><a href="#scambio_elementi-2-10">scambio_elementi/2</a></p></li><li><p><a href="#stampa-2-11">stampa/2</a></p></li><li><p><a href="#stampa-4-12">stampa/4</a></p></li><li><p><a href="#stampa_sequenza-2-13">stampa_sequenza/2</a></p></li><li><p><a href="#start-1-14">start/1</a></p></li></ul>
+<a name="
+Details"></a><h2>Predicati in dettaglio:</h2>
+<ul id="details">
+<li><h3><a name="applicazione_rumore-2-0"></a>applicazione_rumore/2</h3>
+<h4>Forma: </h4>
+
+<p>applicazione_rumore(+Sequenza,-SequenzaConRumore) </p>
+<h4>Descrizione: </h4>
+
+<p>Applicazione di una tipologia di rumore:<br/> sceglie a caso un tipo di rumore da applicare alla sequenza 	</p></li><li><h3><a name="applicazione_rumore-3-1"></a>applicazione_rumore/3</h3>
+<h4>Forma: </h4>
+
+<p>applica_rumore(+Sequenza,+TipoRumore,-SequenzaConRumore) </p>
+<h4>Descrizione: </h4>
+
+<p>Applicazione di una tipologia di rumore:<br/> applica il rumore scelto alla sequenza 	</p></li><li><h3><a name="differenza_liste-3-2"></a>differenza_liste/3</h3>
+<h4>Forma: </h4>
+
+<p>differenza_liste(+ListaSottraendo,+ListaMinuendo,-ListaDifferenza) </p>
+<h4>Descrizione: </h4>
+
+<p>Differenza tra liste:<br/> ricava la lista differenza di due liste 	</p></li><li><h3><a name="divisione_lista-5-3"></a>divisione_lista/5</h3>
+<h4>Forma: </h4>
+
+<p>divisione_lista(+Lista,+PosizioneElemento,-PrimaParte,-ElementoMedio,-SecondaParte) </p>
+<h4>Descrizione: </h4>
+
+<p>Divisione di una lista:<br/> seleziona un elemento da una lista e restituisce una lista con gli elementi precedenti ed una lista con gli elementi successivi 	</p></li><li><h3><a name="elemento_random-2-4"></a>elemento_random/2</h3>
+<h4>Forma: </h4>
+
+<p>elemento_random(+Lista,-ElementoEstratto) </p>
+<h4>Descrizione: </h4>
+
+<p>Selezione di un elemento casuale in una lista:<br/> seleziona un elemento casuale in una lista 	</p></li><li><h3><a name="generazione-2-5"></a>generazione/2</h3>
+<h4>Forma: </h4>
+
+<p>generazione(+NumeroSequenze,-Sequenze) </p>
+<h4>Descrizione: </h4>
+
+<p>Generazione delle sequenze:<br/> genera delle sequenze di workflow 	</p></li><li><h3><a name="generazione_sequenza-4-6"></a>generazione_sequenza/4</h3>
+<h4>Forma: </h4>
+
+<p>generazione_sequenza(+PostoPartenza,+ListaToken,+PostoArrivo,-Sequenza) </p>
+<h4>Descrizione: </h4>
+
+<p>Generazione di una sequenza:<br/> genera una sequenza di workflow 	</p></li><li><h3><a name="rimozione_coda-3-7"></a>rimozione_coda/3</h3>
+<h4>Forma: </h4>
+
+<p>rimozione_coda(+Sequenza,+NumeroEliminabili,-SequenzaConRumore) </p>
+<h4>Descrizione: </h4>
+
+<p>Rimozione della coda di una sequenza:<br/> rimuove degli elementi dalla coda della sequenza 	</p></li><li><h3><a name="rimozione_corpo-3-8"></a>rimozione_corpo/3</h3>
+<h4>Forma: </h4>
+
+<p>rimozione_corpo(+Sequenza,+NumeroEliminabili,-SequenzaConRumore) </p>
+<h4>Descrizione: </h4>
+
+<p>Rimozione del corpo di una sequenza:<br/> rimuove degli elementi dalla corpo della sequenza 	</p></li><li><h3><a name="rimozione_testa-3-9"></a>rimozione_testa/3</h3>
+<h4>Forma: </h4>
+
+<p>rimozione_testa(+Sequenza,+NumeroEliminabili,-SequenzaConRumore) </p>
+<h4>Descrizione: </h4>
+
+<p>Rimozione della testa di una sequenza:<br/> rimuove degli elementi dalla testa della sequenza 	</p></li><li><h3><a name="scambio_elementi-2-10"></a>scambio_elementi/2</h3>
+<h4>Forma: </h4>
+
+<p>scambio_elementi(+Sequenza,-SequenzaConRumore) </p>
+<h4>Descrizione: </h4>
+
+<p>Scambio di due elementi di una sequenza:<br/> scambia due elementi casuali all'interno della sequenza 	</p></li><li><h3><a name="stampa-2-11"></a>stampa/2</h3>
+<h4>Forma: </h4>
+
+<p>stampa(+Sequenze,+FrequenzaRumore) </p>
+<h4>Descrizione: </h4>
+
+<p>Stampa delle sequenze:<br/> stampa le sequenze generate su file workflow.log 	</p></li><li><h3><a name="stampa-4-12"></a>stampa/4</h3>
+<h4>Forma: </h4>
+
+<p>stampa(+OutputStream,+FrequenzaRumore,+FrequenzaRumoreCorrente,+Sequenze) </p>
+<h4>Descrizione: </h4>
+
+<p>Stampa delle sequenze:<br/> stampa le sequenze generate su file workflow.log 	</p></li><li><h3><a name="stampa_sequenza-2-13"></a>stampa_sequenza/2</h3>
+<h4>Forma: </h4>
+
+<p>stampa_sequenza(+OutputStream,+Sequenza) </p>
+<h4>Descrizione: </h4>
+
+<p>Stampa di una sequenza:<br/> stampa una sequenza su file workflow.log 	</p></li><li><h3><a name="start-1-14"></a>start/1</h3>
+<h4>Forma: </h4>
+
+<p>start(,+PercentualeRumore) </p>
+<h4>Descrizione: </h4>
+
+<p>Start:<br/> gestore dell'intero processo di generazione delle sequenze;<br/> provvede a: <ol> <li>leggere il modello di workflow da file wf-net-in</li> <li>generare delle sequenze di workflow</li> <li>stampare le sequenze ottenute su file workflow.log applicandovi il rumore</li></ol></p></li></ul>
+<p><a href="http://prologdoc.sourceforge.net"><img border="0" src="css/prologdoc.png" alt="Generated by PrologDoc" height="18" width="60"></a></p>
+
+
+</body>
+</html>

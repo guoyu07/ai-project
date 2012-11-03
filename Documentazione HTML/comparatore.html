@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<title>Comparatore</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>Comparatore</h1>
+<a name="
+General"></a><h2>Informazioni generali:</h2>
+<p>Comparatore di due modelli di workflow basato sulla completezza e sulla correttezza delle connessioni nei due modelli 	</p><h3>Autore:</h3>
+<ul id="authors"><li><p>Nicola Sanitate 	</p></li></ul>
+<h3>Data:</h3>
+<p>28/10/2011 </p>
+<h3>Istruzioni:</h3>
+<ol>
+ <li>Assicurarsi di avere i file wf-net-in e wf-net-out che si vogliono comparare nella stessa cartella di questo programma</li>
+ <li>Consultare questo programma con un interprete Prolog</li>
+ <li>Interrogare il predicato start</li>
+</ol>
+<a name="
+Modules"></a><h2>Librerie usate:</h2>
+<ul id="modules"><li><p>lists</p></li></ul>
+<a name="
+Predicates"></a><h2>Predicati:</h2>
+<ul id="predicates_file">
+<li><p><a href="#comparazione-3-0">comparazione/3</a></p></li><li><p><a href="#controllo-4-1">controllo/4</a></p></li><li><p><a href="#divisioni_and-2-2">divisioni_and/2</a></p></li><li><p><a href="#divisioni_and_dettaglio-2-3">divisioni_and_dettaglio/2</a></p></li><li><p><a href="#divisioni_or-2-4">divisioni_or/2</a></p></li><li><p><a href="#divisioni_or_dettaglio-3-5">divisioni_or_dettaglio/3</a></p></li><li><p><a href="#prelevamento_transizioni-2-6">prelevamento_transizioni/2</a></p></li><li><p><a href="#stampa_divisioni_and-1-7">stampa_divisioni_and/1</a></p></li><li><p><a href="#stampa_divisioni_or-1-8">stampa_divisioni_or/1</a></p></li><li><p><a href="#stampa_transizioni-1-9">stampa_transizioni/1</a></p></li><li><p><a href="#stampa_unioni_and-1-10">stampa_unioni_and/1</a></p></li><li><p><a href="#stampa_unioni_or-1-11">stampa_unioni_or/1</a></p></li><li><p><a href="#start-0-12">start/0</a></p></li><li><p><a href="#unioni_and-2-13">unioni_and/2</a></p></li><li><p><a href="#unioni_and_dettaglio-2-14">unioni_and_dettaglio/2</a></p></li><li><p><a href="#unioni_or-2-15">unioni_or/2</a></p></li><li><p><a href="#unioni_or_dettaglio-3-16">unioni_or_dettaglio/3</a></p></li></ul>
+<a name="
+Details"></a><h2>Predicati in dettaglio:</h2>
+<ul id="details">
+<li><h3><a name="comparazione-3-0"></a>comparazione/3</h3>
+<h4>Forma: </h4>
+
+<p>comparazione(+Connessioni,+TermineDiParagone,-ConnessioniNonCoperte) </p>
+<h4>Descrizione: </h4>
+
+<p>Comparazione tra una lista di split (join) ed un altra di paragone:<br/> ricava tutte le connessioni non coperte da un termine di paragone 	</p></li><li><h3><a name="controllo-4-1"></a>controllo/4</h3>
+<h4>Forma: </h4>
+
+<p>controllo(+Transizione,+TransizioniConnesse,+ConnessioniParagone,-ConnessioniNonCoperte) </p>
+<h4>Descrizione: </h4>
+
+<p>Controllo di uno split (join) tra gli split (join) di paragone:<br/> controlla che tra le connessioni paragone ci sia una che contengano gli stessi elementi della connessione in esame 	</p></li><li><h3><a name="divisioni_and-2-2"></a>divisioni_and/2</h3>
+<h4>Forma: </h4>
+
+<p>divisioni_and(+Transizioni,-DivisioniAnd) </p>
+<h4>Descrizione: </h4>
+
+<p>Ritrovamento di tutti gli AND-split:<br/> riconosce le divisioni di tipo AND 	</p></li><li><h3><a name="divisioni_and_dettaglio-2-3"></a>divisioni_and_dettaglio/2</h3>
+<h4>Forma: </h4>
+
+<p>divisioni_and_dettaglio(+Posti,-TransizioniDestinazione) </p>
+<h4>Descrizione: </h4>
+
+<p>Prelevamento delle transizioni di destinazione di un AND-split:<br/> preleva le transizioni di destinazione di una divisione di tipo AND 	</p></li><li><h3><a name="divisioni_or-2-4"></a>divisioni_or/2</h3>
+<h4>Forma: </h4>
+
+<p>divisioni_or(+Transizioni,-DivisioniOr) </p>
+<h4>Descrizione: </h4>
+
+<p>Ritrovamento di tutti gli OR-split:<br/> riconosce le divisioni di tipo OR 	</p></li><li><h3><a name="divisioni_or_dettaglio-3-5"></a>divisioni_or_dettaglio/3</h3>
+<h4>Forma: </h4>
+
+<p>divisioni_or_dettaglio(+Posti,-DivisioniOr) </p>
+<h4>Descrizione: </h4>
+
+<p>Ritrovamento degli OR-split a partire da alcuni posti di partenza:<br/> preleva le divisione di tipo OR relativi ad una transizione 	</p></li><li><h3><a name="prelevamento_transizioni-2-6"></a>prelevamento_transizioni/2</h3>
+<h4>Forma: </h4>
+
+<p>prelevamento_transizioni(+Archi,-Transizioni) </p>
+<h4>Descrizione: </h4>
+
+<p>Prelevamento delle transizioni di un modello:<br/> preleva tutte le transizioni presenti nel modello 	</p></li><li><h3><a name="stampa_divisioni_and-1-7"></a>stampa_divisioni_and/1</h3>
+<h4>Forma: </h4>
+
+<p>stampa_divisioni_and(+DivisioniAnd) </p>
+<h4>Descrizione: </h4>
+
+<p>Stampa della lista di AND-split non coperti:<br/> stampa a schermo delle divisione AND non riscontrate nel termine di paragone	</p></li><li><h3><a name="stampa_divisioni_or-1-8"></a>stampa_divisioni_or/1</h3>
+<h4>Forma: </h4>
+
+<p>stampa_divisioni_or(+DivisioniOr) </p>
+<h4>Descrizione: </h4>
+
+<p>Stampa della lista di OR-split non coperti:<br/> stampa a schermo delle divisione OR  non riscontrate nel termine di paragone	</p></li><li><h3><a name="stampa_transizioni-1-9"></a>stampa_transizioni/1</h3>
+<h4>Forma: </h4>
+
+<p>stampa_transizioni(+Transizioni) </p>
+<h4>Descrizione: </h4>
+
+<p>Stampa di una lista di transizioni:<br/> stampa a schermo una lista di transizioni 	</p></li><li><h3><a name="stampa_unioni_and-1-10"></a>stampa_unioni_and/1</h3>
+<h4>Forma: </h4>
+
+<p>stampa_unioni_and(+UnioniAnd) </p>
+<h4>Descrizione: </h4>
+
+<p>Stampa della lista di AND-join non coperti:<br/> stampa a schermo delle unioni AND  non riscontrate nel termine di paragone	</p></li><li><h3><a name="stampa_unioni_or-1-11"></a>stampa_unioni_or/1</h3>
+<h4>Forma: </h4>
+
+<p>stampa_unioni_or(+UnioniOr) </p>
+<h4>Descrizione: </h4>
+
+<p>Stampa della lista di OR-join non coperti:<br/> stampa a schermo delle unioni OR  non riscontrate nel termine di paragone	</p></li><li><h3><a name="start-0-12"></a>start/0</h3>
+<h4>Forma: </h4>
+
+<p>start </p>
+<h4>Descrizione: </h4>
+
+<p>Start:<br/> gestore dell'intero processo di comparazione;<br/> provvede a: 	<ol> 		<li>caricare il modello iniziale da file wf-net-in</li> 		<li>dividere tutte le connessioni del modello iniziale per tipi</li> 		<li>caricare il modello ottenuto dal sistema di apprendimento da file wf-net-out</li> 		<li>dividere tutte le connessioni del modello ottenuto dal sistema di apprendimento per tipi</li> 		<li>confrontare le connessioni dei due modelli</li> 		<li>stampare a schermo i risultati</li> 	</ol> 	</p></li><li><h3><a name="unioni_and-2-13"></a>unioni_and/2</h3>
+<h4>Forma: </h4>
+
+<p>unioni_and(+Transizioni,-UnioniAnd) </p>
+<h4>Descrizione: </h4>
+
+<p>Ritrovamento di tutti gli AND-join:<br/> riconosce le unioni di tipo AND 	</p></li><li><h3><a name="unioni_and_dettaglio-2-14"></a>unioni_and_dettaglio/2</h3>
+<h4>Forma: </h4>
+
+<p>unioni_and_dettaglio(+Posti,-TransizioniPartenza) </p>
+<h4>Descrizione: </h4>
+
+<p>Prelevamento delle transizioni di partenza di un AND-join:<br/> preleva le transizioni di partenza di una unione di tipo AND 	</p></li><li><h3><a name="unioni_or-2-15"></a>unioni_or/2</h3>
+<h4>Forma: </h4>
+
+<p>unioni_or(+Transizioni,-UnioniOr) </p>
+<h4>Descrizione: </h4>
+
+<p>Ritrovamento di tutti gli OR-join:<br/> riconosce le unioni di tipo OR 	</p></li><li><h3><a name="unioni_or_dettaglio-3-16"></a>unioni_or_dettaglio/3</h3>
+<h4>Forma: </h4>
+
+<p>unioni_or_dettaglio(+Posti,-UnioniOr) </p>
+<h4>Descrizione: </h4>
+
+<p>Ritrovamento degli OR-join a partire da alcuni posti di destinazione:<br/> preleva le unioni di tipo OR relativi ad una transizione 	</p></li></ul>
+<p><a href="http://prologdoc.sourceforge.net"><img border="0" src="css/prologdoc.png" alt="Generated by PrologDoc" height="18" width="60"></a></p>
+
+
+</body>
+</html>
